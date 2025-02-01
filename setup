@@ -1,0 +1,10 @@
+#!/bin/bash
+set -x
+script_dir=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+# copy config files to user home
+rsync -a "$script_dir/home/" "$HOME/" 
+# copy scripts to /usr/bin
+sudo rsync -a "$script_dir/scripts/" "/usr/bin"
+# install pacages
+sudo pacman -Syu --noconfirm --needed - < $script_dir/arch-pkg-list
+yay -S --noconfirm --needed - < $script_dir/aur-pkg-list
