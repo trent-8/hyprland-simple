@@ -1,11 +1,12 @@
 #!/bin/bash
-set -x
 # find the directory where this script is located
-script_dir=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-# copy config files to user home
-cp -r $script_dir/home/{*,.*} "$HOME/" 
-# copy scripts into /usr/bin
+script_dir=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )home
+echo "copying config files"
+cp -r $script_dir/home/{*,.*} "$HOME/"
+
+echo "copying scripts into /usr/bin"
 sudo cp $script_dir/scripts/* "/usr/bin/"
-# install packages from package lists
+
+echo "installing packages from package list files"
 sudo pacman -Syu --noconfirm --needed - < $script_dir/arch-pkg-list
 yay -S --noconfirm --needed - < $script_dir/aur-pkg-list
