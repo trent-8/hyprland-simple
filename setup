@@ -1,10 +1,10 @@
 #!/bin/bash
 # find the directory where this script is located
-script_dir=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )home
+script_dir=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 echo "copying config files"
 cp -r $script_dir/home/{*,.*} "$HOME/"
 
-echo "copying scripts into /usr/bin"
+echo "copying scripts into /usr/bin/"
 sudo cp $script_dir/scripts/* "/usr/bin/"
 
 echo "installing packages from package list files"
